@@ -125,7 +125,9 @@ def main():
     #-------------------------------------------------------------------
     # FIGURE 1
     #-------------------------------------------------------------------
-    #-------------------------------------------------------------------    
+    #-------------------------------------------------------------------
+    # The colours for the plots are chosen based on the colourmaps available at https://colorbrewer2.org/
+    # Make a 1x2 plot
     f_prions, ax_prions = plt.subplots(1, 2, constrained_layout=True, figsize=(20, 8))
     # Plot the simulated data and the underlying model
     ax_prions[0].plot(t,u,color=(2/256,56/256,88/256),label="$u(\\tau)$",linewidth=3.0)
