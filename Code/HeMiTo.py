@@ -1,11 +1,10 @@
 
 # =========================================================
-# Script: generate_read_save_data
+# Script: HeMiTo
 # Written by: Johannes Borgqvist
-# Date: 2026-09-09
-# Description: This script generates the plot presented in
-# the HeMiTo manuscript written by Borgqvist and Gretarsson
-# Alexandersen.
+# Date: 2026-09-30
+# Description:
+# This is the main script for the  continuation paper for the first HeMiTo-paper, and here we validate analytical approximations in the Mi-phase.
 # =========================================================
 # Import our beloved libraries
 from load_libraries import * 
@@ -91,10 +90,77 @@ def v_Mi(t, p):
     return dydt
 # =========================================================
 # =========================================================
-# Main function
+# MAIN FUNCTION
 # =========================================================
-# =========================================================
+def main():
+    # =========================================================
+    # Plot solutions, yeah?
+    # =========================================================
+    # Initial conditions
+    y0 = [1.00, 0.05]
+    # Parameters yeah
+    p = [c1, c2, vareps]
+    # Define the age or time if you will
+    t = np.linspace(0,6,200)
+    #-------------------------------------------------------------------
+    # Simulate patient with simple conversion term
+    prions = odeint(aB, y0, t, args=(p,))
+    # Extract each species for patient
+    u, v = prions.T
+    # Conversion function
+    f0 = 1 # Standard heterodimer model
+    #-------------------------------------------------------------------
+    #-------------------------------------------------------------------
+    # UNCOMMENT THE REGION IF YOU WANT TO PLOT THE SOLUTIONS FOR
+    # THE NONLINEAR FUNCTION
+    #-------------------------------------------------------------------    
+    #-------------------------------------------------------------------    
+    # Simulate patient with simple conversion term
+    prions = odeint(aB_Hill, y0, t, args=(p,))
+    # Extract each species for patient
+    u, v = prions.T
+    # Conversion function f(v0) for the nonlinear Hill conversion function
+    f0 = 1.90+((y0[1]**4)/(1+(y0[1]**5)))
+    #-------------------------------------------------------------------
+    #-------------------------------------------------------------------
+    # FIGURE 1
+    #-------------------------------------------------------------------
+    #-------------------------------------------------------------------    
+    f_prions, ax_prions = plt.subplots(1, 2, constrained_layout=True, figsize=(20, 8))
+    # Plot the simulated data and the underlying model
+    ax_prions[0].plot(t,u,color=(2/256,56/256,88/256),label="$u(\\tau)$",linewidth=3.0)
+    ax_prions[0].plot(t,u_He(t, [y0[0], c1, c2])+vareps*u_Mi(t, [y0[0], y0[1], c1, c2, f0]),color=(5/256,112/256,176/256),label="$u_{\\mathrm{He}}(\\tau)+\\varepsilon u_{\\mathrm{Mi}}(\\tau)$",linewidth=3.0)
+    # Set a grid and define a legend
+    ax_prions[0].grid()
+    ax_prions[0].legend(loc='best',prop={"size":40})
+    # Set the x-labels and y-labels
+    ax_prions[0].set_xlabel(xlabel="Time, $\\tau$",fontsize=40)
+    ax_prions[0].set_ylabel(ylabel="Particle concentration",fontsize=40)
+    ax_prions[0].set_title(label="Healthy species",fontsize=50)    
+    ax_prions[0].xaxis.set_tick_params(labelsize=35)
+    ax_prions[0].yaxis.set_tick_params(labelsize=35)
+    # Plot the simulated data and the underlying model
+    ax_prions[1].plot(t,y0[1]*((t+1)/(t+1))+vareps*v_Mi(t, [y0[0], y0[1], c1, c2, f0]),color=(2/256,56/256,88/256),label="$v_{\\mathrm{He}}(\\tau)+\\varepsilon v_{\\mathrm{Mi}}(\\tau)$",linewidth=3.0)
+    ax_prions[1].plot(t,v,color=(5/256,112/256,176/256),label="$v(\\tau)$",linewidth=3.0)
+    # Set a grid and define a legend
+    ax_prions[1].grid()
+    ax_prions[1].legend(loc='best',prop={"size":40})
+    # Set the x-labels and y-labels
+    ax_prions[1].set_xlabel(xlabel="Time, $\\tau$",fontsize=40)
+    ax_prions[1].set_ylabel(ylabel="Particle concenctration",fontsize=40)
+    ax_prions[1].set_title(label="Toxic species",fontsize=50) 
+    ax_prions[1].xaxis.set_tick_params(labelsize=35)
+    ax_prions[1].yaxis.set_tick_params(labelsize=35)
+    plt.suptitle("Comparison between truncated perturbation series and numerical solutions when $\\varepsilon="+str(vareps)+"$",fontsize=35)
+    plt.show()
+    f_prions.savefig('../Figures/HeMi_dynamics.png')
 
+
+# =========================================================
+# RUN THE MAIN FUNCTION
+# =========================================================
+if __name__ == "__main__":
+    main()               
 
 # # =========================================================
 # # Plot solutions, yeah?
