@@ -1,0 +1,73 @@
+\documentclass[tikz,crop,convert={density=200,outext=.png},border=0.4cm]{standalone}
+
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usetikzlibrary{arrows.meta}
+\usepackage{physics}
+\usepackage{xcolor}
+\definecolor{green_1}{RGB}{0,68,27}
+\definecolor{green_2}{RGB}{35,139,69}
+\definecolor{green_3}{RGB}{102,194,164}
+\definecolor{green_4}{RGB}{140,150,198}
+
+% Colours for the time domain
+\definecolor{red_1}{RGB}{103,0,31}
+\definecolor{red_2}{RGB}{206,18,86}
+\definecolor{red_3}{RGB}{2,56,88}
+\definecolor{red_4}{RGB}{5,112,176}
+% Colours for the phase plane
+\definecolor{blue_1}{RGB}{2,56,88}
+\definecolor{blue_2}{RGB}{4,90,141}
+\definecolor{blue_3}{RGB}{5,112,176}
+\definecolor{blue_4}{RGB}{54,144,192}
+% Colours for the text
+\definecolor{He}{RGB}{103,0,31}
+\definecolor{Mi}{RGB}{206,18,36}
+\definecolor{To}{RGB}{231,41,138}
+
+\pgfplotsset{compat=newest,
+    width=10cm,
+    %height=3cm,
+    scale only axis=true,
+    max space between ticks=25pt,
+    try min ticks=5,
+    every axis/.style={
+        axis y line=left,
+        axis x line=middle,
+        axis line style={thick,->,>=latex, shorten >=-.3cm}
+    },
+    every axis plot/.append style={thick},
+    tick style={black, thick},
+}
+\tikzset{
+    semithick/.style={line width=0.8pt},
+}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{dateplot}
+% Document begins
+\begin{document}
+% =========================================================================================================
+\begin{tikzpicture}
+    \begin{axis}[name=plot1,height=4cm,width=4cm,xlabel={Time, $\tau$},ylabel={Particle concentration},ymin = {0},x label style={at={(axis description cs:0.5,-0.1)},anchor=north},y label style={at={(axis description cs:-0.1,0.55)},rotate=0,anchor=south},extra x ticks = {0}, extra y ticks= {0},legend style={at={(axis description cs:0.1,0.17)},anchor=west,nodes={scale=1.0, transform shape}},legend cell align={left}]
+     \input{./Input/healthy_eps_small}
+    \end{axis}
+    \begin{axis}[name=plot2,at={($(plot1.east)+(1cm,0)$)},anchor=west,height=4cm,width=4cm,ymin = {0},xlabel={Time, $\tau$},ylabel={Particle concentration},x label style={at={(axis description cs:0.5,-0.1)},anchor=north},y label style={at={(axis description cs:-0.2,0.55)},rotate=0,anchor=south},extra x ticks = {0}, extra y ticks= {0},legend style={at={(axis description cs:0.05,0.8)},anchor=west,nodes={scale=1.0, transform shape}},legend cell align={left},ytick={0,0.05,0.10,0.15,0.20,0.25},yticklabels={$0$,$0.05$,$0.10$,$0.15$,$0.20$,$0.25$}]
+     \input{./Input/toxic_eps_small}
+    \end{axis}
+    \begin{axis}[name=plot3,at={($(plot1.south)-(0,1cm)$)},anchor=north,height=4cm,width=4cm,ymin = {0},xlabel={Time, $\tau$},ylabel={Particle concentration},x label style={at={(axis description cs:0.5,-0.1)},anchor=north},y label style={at={(axis description cs:-0.1,0.55)},rotate=0,anchor=south},extra x ticks = {0}, extra y ticks= {0},legend style={at={(axis description cs:0.1,0.17)},anchor=west,nodes={scale=1.0, transform shape}},legend cell align={left}]
+     \input{./Input/healthy_eps_large}
+    \end{axis}
+    \begin{axis}[name=plot4,at={($(plot2.south)-(0,1cm)$)},anchor=north,height=4cm,width=4cm,ymin = {0},xlabel={Time, $\tau$},ylabel={Particle concentration},x label style={at={(axis description cs:0.5,-0.1)},anchor=north},y label style={at={(axis description cs:-0.1,0.55)},rotate=0,anchor=south},extra x ticks = {0}, extra y ticks= {0},legend style={at={(axis description cs:0.05,0.8)},anchor=west,nodes={scale=1.0, transform shape}},legend cell align={left}]
+     \input{./Input/toxic_eps_large}
+    \end{axis}
+
+    \node at (-0.4,4.4) {\Large(\textbf{A})};
+    \node at (4.6,4.4) {\Large(\textbf{B})};
+    \node at (-0.4,-0.6) {\Large(\textbf{C})};
+    \node at (4.6,-0.6) {\Large(\textbf{D})};
+    \node at (-2.0,2.4) {\Large$\boldsymbol{\varepsilon=}\mathbf{0.05}$};
+    \node at (-2.0,-2.4) {\Large$\boldsymbol{\varepsilon=}\mathbf{0.30}$};        
+\end{tikzpicture}
+% =========================================================================================================
+\end{document}
