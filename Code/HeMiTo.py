@@ -2,7 +2,7 @@
 # =========================================================
 # Script: HeMiTo
 # Written by: Johannes Borgqvist
-# Date: 2026-09-30
+# Date: 2026-10-02
 # Description:
 # This is the main script for the  continuation paper for the first HeMiTo-paper, and here we validate analytical approximations in the Mi-phase.
 # =========================================================
@@ -198,7 +198,7 @@ def main():
     ax_prions[0].legend(loc='best',prop={"size":40})
     # Set the x-labels and y-labels
     ax_prions[0].set_xlabel(xlabel="Time, $\\tau$",fontsize=40)
-    ax_prions[0].set_ylabel(ylabel="Prion conc.",fontsize=40)
+    ax_prions[0].set_ylabel(ylabel="Particle concentration",fontsize=40)
     ax_prions[0].set_title(label="Toxic species",fontsize=50)    
     ax_prions[0].xaxis.set_tick_params(labelsize=35)
     ax_prions[0].yaxis.set_tick_params(labelsize=35)
