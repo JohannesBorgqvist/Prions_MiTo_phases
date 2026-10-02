@@ -142,8 +142,8 @@ def main():
     ax_prions[0].xaxis.set_tick_params(labelsize=35)
     ax_prions[0].yaxis.set_tick_params(labelsize=35)
     # Plot the simulated data and the underlying model
-    ax_prions[1].plot(t,y0[1]*((t+1)/(t+1))+vareps*v_Mi(t, [y0[0], y0[1], c1, c2, f0]),color=(2/256,56/256,88/256),label="$v_{\\mathrm{He}}(\\tau)+\\varepsilon v_{\\mathrm{Mi}}(\\tau)$",linewidth=3.0)
-    ax_prions[1].plot(t,v,color=(5/256,112/256,176/256),label="$v(\\tau)$",linewidth=3.0)
+    ax_prions[1].plot(t,v,color=(0/256,68/256,27/256),label="$v(\\tau)$",linewidth=3.0)
+    ax_prions[1].plot(t,y0[1]*((t+1)/(t+1))+vareps*v_Mi(t, [y0[0], y0[1], c1, c2, f0]),color=(102/256,194/256,164/256),label="$v_{\\mathrm{He}}(\\tau)+\\varepsilon v_{\\mathrm{Mi}}(\\tau)$",linewidth=3.0)
     # Set a grid and define a legend
     ax_prions[1].grid()
     ax_prions[1].legend(loc='best',prop={"size":40})
