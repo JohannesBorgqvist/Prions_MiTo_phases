@@ -265,7 +265,7 @@ def main():
     print("Logistic approximation in the To-phase")
     print("--------------------------------------------------")    
     # Define temporary time vector
-    t_temp = np.linspace(0,45)
+    t_temp = np.linspace(0,41)
     # Calculate the steady state
     v_2_star_constant = (1/vareps)*(c1-c2)
     print("Steady state value,\t\tv_2^star\t=\t%0.3f"%(v_2_star_constant))
