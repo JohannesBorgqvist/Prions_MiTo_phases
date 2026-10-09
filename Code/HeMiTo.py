@@ -311,7 +311,7 @@ def main():
     f_prions_log, ax_prions_log = plt.subplots(1, 2, constrained_layout=True, figsize=(20, 8))
     # Plot the simulated data and the underlying model
     ax_prions_log[0].plot(t_log,u_log,color=(2/256,56/256,88/256),label="$u(\\tau)$",linewidth=3.0)
-    ax_prions_log[0].plot(t_log,u_log_approx,color=(5/256,112/256,176/256),label="$u_{\\mathrm{qss}}(v)=\\frac{c_{1}}{c_{2}+\\varepsilon{v}}$",linewidth=3.0)    
+    ax_prions_log[0].plot(t_log,u_log_approx,color=(5/256,112/256,176/256),label="$u_{\\mathrm{qss}}(v)=\\frac{c_{1}}{c_{2}+\\varepsilon{v}{f}(v)}$",linewidth=3.0)    
     # Set a grid and define a legend
     ax_prions_log[0].grid()
     ax_prions_log[0].legend(loc='best',prop={"size":40})
@@ -336,7 +336,7 @@ def main():
     ax_prions_log[1].set_title(label="Toxic species",fontsize=50)    
     ax_prions_log[1].xaxis.set_tick_params(labelsize=35)
     ax_prions_log[1].yaxis.set_tick_params(labelsize=35)
-    plt.suptitle("Logistic approximation of the toxic species during the To-phase",fontsize=35)
+    plt.suptitle("Logistic approximation of the toxic species during the To-phase when $f(v)=1$",fontsize=35)
     plt.show()
     f_prions_log.savefig('../Figures/To_phase_logistic.png')
 
