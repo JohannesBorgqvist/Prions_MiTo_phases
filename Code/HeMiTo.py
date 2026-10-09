@@ -311,7 +311,7 @@ def main():
     f_prions_log, ax_prions_log = plt.subplots(1, 2, constrained_layout=True, figsize=(20, 8))
     # Plot the simulated data and the underlying model
     ax_prions_log[0].plot(t_log,u_log,color=(2/256,56/256,88/256),label="$u(\\tau)$",linewidth=3.0)
-    ax_prions_log[0].plot(t_log,u_log_approx,color=(5/256,112/256,176/256),label="$u_{\\mathrm{qss}}(v)=\\frac{c_{1}}{c_{2}+\\varepsilon{v}{f}(v)}$",linewidth=3.0)    
+    ax_prions_log[0].plot(t_log,u_log_approx,color=(5/256,112/256,176/256),label="$u_{\\mathrm{qss}}(v_{\\log})=\\frac{c_{1}}{c_{2}+\\varepsilon{v_{\\log}}{f}(v_{\\log})}$",linewidth=3.0)    
     # Set a grid and define a legend
     ax_prions_log[0].grid()
     ax_prions_log[0].legend(loc='best',prop={"size":40})
@@ -326,7 +326,7 @@ def main():
     #-------------------------------------------------------------------
     # Plot the simulated data and the underlying model
     ax_prions_log[1].plot(t_log,v_log,color=(0/256,68/256,27/256),label="$v(\\tau)$",linewidth=3.0)
-    ax_prions_log[1].plot(t_log,v_log_approx,color=(102/256,194/256,164/256),label="$\\frac{\\kappa}{1-\\left(\\frac{\\kappa-v_{0}}{v_{0}}\\right)e^{-\\gamma\\tau}}$",linewidth=3.0)           
+    ax_prions_log[1].plot(t_log,v_log_approx,color=(102/256,194/256,164/256),label="$v_{\\log}(\\tau)=\\frac{\\kappa}{1-\\left(\\frac{\\kappa-v_{0}}{v_{0}}\\right)e^{-\\gamma\\tau}}$",linewidth=3.0)           
     # Set a grid and define a legend
     ax_prions_log[1].grid()
     ax_prions_log[1].legend(loc='best',prop={"size":40})
